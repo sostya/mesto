@@ -1,6 +1,7 @@
-class Api {
-    constructor(options) {
-        this.options = options;
+export class Api {
+    constructor(baseUrl, token) {
+        this.baseUrl = baseUrl;
+        this.token = token
     }
 
     _getResponseData(res) {
@@ -11,8 +12,10 @@ class Api {
     }
 
     getInitialCards() {
-        return fetch(`${this.options.baseUrl}/cards`, {
-            headers: this.options.headers
+        return fetch(`${this.baseUrl}/cards`, {
+            headers: {
+               authorization: this.token 
+            }
         })
 
         .then((res) => {
@@ -21,8 +24,10 @@ class Api {
     }
 
     getUserData() {
-        return fetch(`${this.options.baseUrl}/users/me`, {
-            headers: this.options.headers
+        return fetch(`${this.baseUrl}/users/me`, {
+            headers: {
+               authorization: this.token 
+            }
         })
         .then((res) => {
             return this._getResponseData(res);
@@ -30,9 +35,12 @@ class Api {
     }
 
     sendUserData(userName, userAbout) {
-        return fetch(`${this.options.baseUrl}/users/me`, {
+        return fetch(`${this.baseUrl}/users/me`, {
             method: 'PATCH',
-            headers: this.options.headers,
+            headers: {
+                authorization: this.token,
+                'Content-type': 'application/json'
+             },
             body: JSON.stringify({
                 name: userName,
                 about: userAbout

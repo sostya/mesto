@@ -1,4 +1,4 @@
-class Popup {
+export class Popup {
   togglePopup(currentPopup, imageStyle) {
     currentPopup.classList.toggle('popup_is-opened');
     currentPopup.addEventListener('click', this.close);

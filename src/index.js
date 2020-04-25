@@ -1,12 +1,23 @@
+import "./style.css";
+import {Api} from './script/Api.js';
+import {CardList} from './script/CardList.js';
+import {Card} from './script/Card.js';
+import {FormValidator} from './script/FormValidator.js';
+import {Popup} from './script/Popup.js';
+import {UserInfo} from './script/UserInfo.js';
+
 (function () {
-  const api = new Api({
-    baseUrl: 'https://praktikum.tk/cohort8',
-    headers: {
-      authorization: '8e3c7bc6-56a6-469a-a69b-2267f32a6132',
-      'Content-Type': 'application/json'
-    }
-  });
-  
+  // const api = new Api({
+    // baseUrl: 'https://praktikum.tk/cohort8',
+    // headers: {
+      // // authorization: '8e3c7bc6-56a6-469a-a69b-2267f32a6132',
+      // 'Content-Type': 'application/json'
+    // }
+  // });
+  const baseUrl = 'https://praktikum.tk/cohort8';
+  const token = '8e3c7bc6-56a6-469a-a69b-2267f32a6132';
+  const api = new Api(baseUrl, token);
+
   const userPhoto = document.querySelector('.user-info__photo');
   const userName = document.querySelector('.user-info__name');
   const userAbout = document.querySelector('.user-info__job');
